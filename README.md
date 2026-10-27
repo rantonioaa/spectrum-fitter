@@ -86,8 +86,12 @@ cover:
 
 The optical grid has **24** entries by construction —
 `Hierro/Hidrogeno/grid_conv.py` sweeps `np.arange(700, 3100, 100)`, so widths stop
-at 3000 km/s. (That script is the generator and is kept for provenance; it imports
-`astroagn`, which is not on PyPI, so it will not run as-is.) The app reads
+at 3000 km/s. That script is the generator and it runs standalone: it used to
+import `astroagn.lctools` for two conversions (`kmstoangs`, `fwhmtosigma`), now
+defined inline. Run it from `Hierro/Hidrogeno/` and it writes to
+`regenerated_grid/` so the shipped templates are never overwritten; the output
+matches the published files to a maximum relative difference of 3e-10 (float64
+round-off, plus a float-repr change in pandas since 2021). The app reads
 whatever is present and sizes its smoothing slider accordingly; it does not
 assume 50.
 

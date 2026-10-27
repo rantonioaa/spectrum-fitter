@@ -52,6 +52,18 @@ The 2020-2021 code could not run on any interpreter newer than roughly Python
    died on `FE_OPT-1_25.dat`. The loop and the smoothing slider now follow the
    files actually present, and a caption states how many are available.
 
+### Template generator
+
+10. `Hierro/Hidrogeno/grid_conv.py` imported `astroagn.lctools` — a private
+    package that is not on PyPI — for two conversions it used nowhere else. Both
+    are now defined inline (`kmstoangs` with c = 300 000 km/s, `fwhmtosigma`
+    with the full-precision 2√(2ln2) = 2.354820045), so the generator runs
+    standalone. Verified by regenerating all 24 templates from `FE_OPT_og.dat`
+    and comparing against the shipped files: max relative difference 3e-10, i.e.
+    float64 round-off — the truncated 2.35482 would have been off by 1.3e-8.
+    Output now goes to `regenerated_grid/` instead of the working directory, so
+    running it cannot overwrite the templates in place.
+
 ### Notebooks
 
 8. `example.ipynb` cannot run as shipped: cell 4 loads spectra from
