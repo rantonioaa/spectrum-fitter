@@ -1,0 +1,35 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install pinned stack
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Numerical check against known ground truth
+        run: python tools/verify_fit_synthetic.py
+
+      - name: GUI widget-state matrix
+        run: python tools/test_app_states.py
+
+      - name: Region-bound handling
+        run: python tools/test_region_bounds.py

@@ -1,0 +1,28 @@
+# --- python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# --- app outputs (written to the working directory) ---
+*_fit.txt
+*_fit_manual.txt
+*_woc.txt
+*_params.txt
+*_manual.pdf
+*.pdf
+!docs/*.pdf
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+
+# --- notebook scratch ---
+*.nbconvert.ipynb

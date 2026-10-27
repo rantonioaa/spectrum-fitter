@@ -1,0 +1,8 @@
+# Normalise line endings: scientific data files must stay LF so that the
+# templates load identically on Windows, Linux and macOS.
+* text=auto eol=lf
+*.bat text eol=crlf
+*.png binary
+*.pdf binary
+*.zip binary
+*.ipynb text eol=lf
