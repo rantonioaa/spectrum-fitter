@@ -156,22 +156,6 @@ stubbed.
 
 ---
 
-## Known limitations
-
-- **No uncertainties.** `Spectrum1D` is built from flux alone, so the fit is
-  unweighted and no formal parameter errors are computed or exported. Use an
-  external error propagation if you need them for publication.
-- **Degenerate components.** Two Gaussians sharing a centre (e.g. broad and very
-  broad Hβ) trade amplitude against width: the sum is constrained, the split is
-  not.
-- **Bounds bite.** With all 13 parameters free on a single 500-pixel epoch, the
-  fitter can rail against several bounds. Retune the initial values per
-  spectrum — that is what the GUI is for.
-- **The `hb_oiii` tie is fixed** to the theoretical doublet ratio
-  `I(4959) = I(5007)/2.947`, so the 4959 amplitude is derived, not measured.
-- **Single epoch / single spectrum.** No error handling for masked pixels,
-  telluric residuals, or multi-epoch simultaneous fitting.
-
 ## License
 
 BSD 3-Clause — see [LICENSE](LICENSE).
